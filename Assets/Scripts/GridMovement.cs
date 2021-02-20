@@ -6,17 +6,16 @@ public class GridMovement : MonoBehaviour
 {
 
     //we assign these to be equivalent in each direction, so fwd = (x = 0, y = 0, z = 1) and bwd = (x = 0, y = 0, z = -1)
-    public Vector3 Fwd;
-    public Vector3 Bwd;
-    public Vector3 Left;
-    public Vector3 Right;
-    public Vector3 Up;
-    public Vector3 Down;
-
+    public Vector3 Fwd, Bwd, Left, Right, Up, Down;
+    public Transform hazard, Key;
+    Vector3 startPos;
+    public bool hasKey;
+    
     // Start is called before the first frame update
     void Start() //like setup
     {
-        
+        startPos = transform.position; 
+        hasKey = false; 
     }
 
     // Update is called once per frame
@@ -62,7 +61,11 @@ public class GridMovement : MonoBehaviour
         transform.position += Right;
         }
         
-       
+        if (hazard.position == transform.position)
+            transform.position = startPos;
+            
+        if (Key.position == transform.position)
+            hasKey = true;
         
 
     }
